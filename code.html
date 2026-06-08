@@ -191,7 +191,7 @@ nav.visible{transform:translateY(0)}
 .hero{
   max-width:960px;margin:0 auto;
   padding:5rem 2rem 4rem;
-  display:grid;grid-template-columns:minmax(0,1fr) 170px;
+  display:grid;grid-template-columns:1fr;
   gap:3rem;align-items:start;
   border-bottom:1px solid var(--border);
   overflow:hidden;
@@ -212,7 +212,6 @@ h1{font-family:var(--syne);font-size:54px;font-weight:800;line-height:1.0;letter
 h1 span{background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-sub{font-family:var(--mono);font-size:13px;font-weight:300;color:var(--text3);margin-bottom:1.25rem;letter-spacing:0.04em}
 .hero-bio{font-size:14px;line-height:1.8;color:var(--text2);max-width:500px;font-weight:300;margin-bottom:2rem}
-.hero-contacts{display:flex;gap:8px;flex-wrap:wrap}
 .contact-chip{
   display:inline-flex;align-items:center;gap:6px;
   padding:7px 14px;border:1px solid var(--border2);border-radius:99px;
@@ -220,7 +219,6 @@ h1 span{background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-bac
 }
 .contact-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accentDim);transform:translateY(-1px)}
 .contact-chip i{font-size:13px}
-.hero-right{display:flex;flex-direction:column;gap:10px;min-width:0;width:100%;max-width:170px}
 .stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px 16px;text-align:center;transition:all 0.25s;width:100%}
 .stat-card:hover{border-color:var(--border2);transform:translateY(-2px)}
 .stat-num{font-family:var(--syne);font-size:26px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1}
@@ -347,6 +345,259 @@ main{max-width:960px;margin:0 auto;padding:0 2rem}
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--border);text-align:center;padding:2rem;font-size:11px;font-family:var(--mono);color:var(--text3);letter-spacing:0.06em;margin-top:2rem}
 footer span{color:var(--accent)}
+
+/* ── CONTACT IN ABOUT ── */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.contact-card{
+  display:flex;align-items:center;gap:14px;
+  padding:1rem 1.25rem;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:var(--r-lg);text-decoration:none;
+  transition:all 0.25s;
+}
+.contact-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.contact-card-icon{
+  width:40px;height:40px;border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.contact-card-label{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);font-family:var(--mono);margin-bottom:2px}
+.contact-card-val{font-size:12px;color:var(--text1);font-family:var(--mono);font-weight:400}
+
+/* section exit/enter transitions */
+.section.exiting{
+  animation:sectionOut 0.22s ease forwards;
+  pointer-events:none;
+}
+@keyframes sectionOut{
+  from{opacity:1;transform:translateY(0)}
+  to{opacity:0;transform:translateY(-10px)}
+}
+.section.entering{
+  animation:sectionIn 0.38s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes sectionIn{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+/* hero compact mode for non-about */
+.hero{transition:padding 0.3s ease}
+
+/* ── GET IN TOUCH ── */
+.git-section{margin-top:3rem;padding-top:2.5rem;border-top:1px solid var(--border)}
+.git-heading{
+  font-family:var(--syne);font-size:clamp(28px,5vw,40px);font-weight:800;
+  text-align:center;margin-bottom:2.5rem;letter-spacing:-0.02em;
+  color:var(--text1);
+}
+.git-heading span{
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.git-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:2.5rem;align-items:start}
+@media(max-width:680px){.git-layout{grid-template-columns:1fr}}
+
+.git-info{display:flex;flex-direction:column;gap:8px}
+.git-info-item{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 14px;background:var(--bg3);
+  border:1px solid var(--border);border-radius:var(--r-lg);
+  text-decoration:none;transition:all 0.22s;
+}
+.git-info-item:hover{border-color:var(--border2);transform:translateX(4px)}
+.git-info-icon{
+  width:40px;height:40px;min-width:40px;border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.git-info-label{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);font-family:var(--mono);margin-bottom:2px}
+.git-info-val{font-size:12px;color:var(--text1);font-family:var(--mono)}
+
+.git-form{display:flex;flex-direction:column;gap:12px}
+.git-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.git-form-row{grid-template-columns:1fr}}
+.git-input{
+  width:100%;padding:13px 16px;
+  background:var(--bg3);
+  border:1px solid var(--border2);border-radius:var(--r-md);
+  font-family:var(--mono);font-size:13px;color:var(--text1);
+  outline:none;transition:border-color 0.2s,box-shadow 0.2s;
+  resize:none;
+}
+.git-input::placeholder{color:var(--text3)}
+.git-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(129,140,248,0.1)}
+.git-textarea{min-height:140px;margin-bottom:0}
+.git-send{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  border:none;border-radius:var(--r-md);
+  font-family:var(--syne);font-size:14px;font-weight:700;
+  color:#fff;cursor:pointer;letter-spacing:0.02em;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all 0.25s;box-shadow:0 4px 20px rgba(129,140,248,0.25);
+}
+.git-send:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(129,140,248,0.35)}
+.git-send i{font-size:16px}
+
+/* ── ACH LINK BUTTONS ── */
+.ach-link{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 12px;border-radius:99px;
+  font-size:11px;font-family:var(--mono);
+  text-decoration:none;border:1px solid;
+  transition:all 0.2s;
+}
+.ach-link:hover{opacity:0.8;transform:translateY(-1px)}
+
+/* ── CERT LOGO ── */
+.cert-logo-wrap{
+  width:44px;height:44px;min-width:44px;
+  border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+
+.git-icon-email{background:var(--accentDim);color:var(--accent)}
+.git-icon-github{background:#161b22;color:#e6edf3}
+.git-icon-linkedin{background:#0a1628;color:#0A66C2}
+.git-icon-location{background:rgba(129,140,248,0.1);color:var(--blue)}
+.git-info-static{cursor:default}
+.git-info-static:hover{transform:none !important}
+
+/* ── INTERNSHIP CARD ── */
+.intern-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:var(--r-xl);padding:2rem;
+  position:relative;overflow:hidden;
+}
+.intern-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--blue),var(--accent),transparent);
+}
+.intern-header{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:1.5rem;flex-wrap:wrap;
+}
+.intern-logo{
+  width:50px;height:50px;border-radius:var(--r-md);
+  background:var(--bg4);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.intern-org{font-family:var(--syne);font-size:15px;font-weight:700;color:var(--text1);margin-bottom:2px}
+.intern-partners{font-size:11px;color:var(--text3);font-family:var(--mono)}
+.intern-badge{
+  margin-left:auto;
+  font-size:10px;font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;
+  padding:4px 12px;border-radius:99px;
+  background:var(--accentDim);color:var(--accent);
+  border:1px solid rgba(110,231,183,0.25);
+}
+.intern-title-row{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:1rem}
+.intern-title{font-family:var(--syne);font-size:20px;font-weight:800;color:var(--text1);letter-spacing:-0.01em}
+.intern-period{
+  font-size:11px;font-family:var(--mono);color:var(--accent);
+  display:flex;align-items:center;gap:5px;
+}
+.intern-desc{
+  font-size:13px;line-height:1.8;color:var(--text2);font-weight:300;
+  margin-bottom:1.75rem;
+}
+.intern-highlights{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem}
+@media(max-width:580px){.intern-highlights{grid-template-columns:1fr}}
+.intern-highlight{
+  background:var(--bg4);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:1rem 1.1rem;
+  display:flex;gap:12px;align-items:flex-start;
+  transition:border-color 0.2s;
+}
+.intern-highlight:hover{border-color:var(--border2)}
+.ih-icon{
+  width:34px;height:34px;border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+}
+.ih-title{font-family:var(--syne);font-size:13px;font-weight:700;color:var(--text1);margin-bottom:4px}
+.ih-desc{font-size:11px;color:var(--text3);font-family:var(--mono);line-height:1.55;font-weight:300}
+.intern-skills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.5rem}
+.intern-skill-tag{
+  font-size:11px;font-family:var(--mono);
+  padding:4px 12px;border-radius:99px;
+  border:1px solid var(--border2);color:var(--text2);
+  background:var(--bg4);transition:all 0.15s;
+}
+.intern-skill-tag:hover{border-color:var(--accent);color:var(--accent)}
+.intern-cert-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 20px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  border-radius:var(--r-md);
+  font-family:var(--mono);font-size:12px;font-weight:500;
+  color:#fff;text-decoration:none;
+  transition:all 0.25s;
+  box-shadow:0 4px 16px rgba(129,140,248,0.2);
+}
+.intern-cert-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(129,140,248,0.3)}
+.intern-cert-btn i{font-size:15px}
+
+
+
+
+
+
+
+/* ── LIGHT THEME ── */
+body.light{
+  --bg:#F8F8F6;
+  --bg2:#F0F0EE;
+  --bg3:#EAEAE7;
+  --bg4:#E0E0DC;
+  --bg5:#D4D4CF;
+  --text1:#111110;
+  --text2:#3C3C38;
+  --text3:#7A7A74;
+  --border:rgba(0,0,0,0.09);
+  --border2:rgba(0,0,0,0.15);
+  --accentDim:#D1FAE5;
+  --blueDim:#E0E7FF;
+  --purpleDim:#F3E8FF;
+  --orangeDim:#FFF0E0;
+}
+body.light nav{background:rgba(248,248,246,0.88)}
+body.light .splash-enter{color:var(--accent)}
+body.light .git-input{color:var(--text1)}
+
+/* ── THEME TOGGLE BUTTON ── */
+#themeBtn{
+  width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  background:none;
+  border:1px solid var(--border2);
+  border-radius:var(--r-sm);
+  color:var(--text2);
+  cursor:pointer;
+  font-size:17px;
+  transition:all 0.2s;
+  flex-shrink:0;
+}
+#themeBtn:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+  background:var(--accentDim);
+}
+
+/* ── CONNECT BUTTON ── */
+.connect-btn{
+  margin-top:1.5rem;
+  display:inline-flex;align-items:center;gap:9px;
+  padding:12px 26px;
+  background:linear-gradient(135deg,var(--accent),var(--blue));
+  border:none;border-radius:var(--r-md);
+  font-family:var(--syne);font-size:14px;font-weight:700;
+  color:var(--bg);cursor:pointer;letter-spacing:0.02em;
+  transition:all 0.25s;
+  box-shadow:0 4px 20px rgba(110,231,183,0.2);
+}
+.connect-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(110,231,183,0.3)}
+.connect-btn svg{flex-shrink:0}
 </style>
 </head>
 <body>
@@ -376,7 +627,27 @@ footer span{color:var(--accent)}
 <!-- ════ NAV ════ -->
 <nav id="mainNav">
   <div class="nav-logo">VSG.dev</div>
+  <div style="display:flex;align-items:center;gap:8px">
+  <button id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle light/dark">
+    <!-- Sun icon (dark mode) -->
+    <svg id="iconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+    <!-- Moon icon (light mode, hidden by default) -->
+    <svg id="iconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+    </svg>
+  </button>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><i class="ti ti-menu-2"></i></button>
+  </div>
   <ul class="nav-links" id="navLinks">
     <li><a href="#" class="active" onclick="showSection('about',this)">About</a></li>
     <li><a href="#" onclick="showSection('skills',this)">Skills</a></li>
@@ -388,7 +659,7 @@ footer span{color:var(--accent)}
 </nav>
 
 <!-- ════ HERO ════ -->
-<div class="hero" id="hero">
+<div class="hero" id="hero" style="display:block">
   <div>
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
@@ -397,18 +668,11 @@ footer span{color:var(--accent)}
     <h1>Veera<br><span>Sai Ganesh</span></h1>
     <div class="hero-sub">CS Engineer · Problem Solver</div>
     <p class="hero-bio">First-year CSE student with a 9.08 CGPA, a strong grip on data structures, and a habit of shipping real projects. I write clean code, think in systems, and build things that work.</p>
-    <div class="hero-contacts">
-      <a class="contact-chip" href="mailto:saiganeshveera965@gmail.com"><i class="ti ti-mail"></i>Email</a>
-      <a class="contact-chip" href="https://github.com/24A31A05IR" target="_blank" rel="noopener"><i class="ti ti-brand-github"></i>GitHub</a>
-      <a class="contact-chip" href="https://www.linkedin.com/in/veera-sai-ganesh" target="_blank" rel="noopener"><i class="ti ti-brand-linkedin"></i>LinkedIn</a>
-      <a class="contact-chip" href="https://leetcode.com/u/saiganeshveera965" target="_blank" rel="noopener"><i class="ti ti-code"></i>LeetCode</a>
-      <a class="contact-chip" href="https://www.hackerrank.com/profile/saiganeshveera965" target="_blank" rel="noopener"><i class="ti ti-terminal-2"></i>HackerRank</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="stat-card"><span class="stat-num">9.08</span><span class="stat-label">CGPA</span></div>
-    <div class="stat-card"><span class="stat-num">250+</span><span class="stat-label">DSA solved</span></div>
-    <div class="stat-card"><span class="stat-num">96.6%</span><span class="stat-label">Class 12</span></div>
+    <button class="connect-btn" onclick="connectMe()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Connect with me
+    </button>
+
   </div>
 </div>
 
@@ -427,6 +691,63 @@ footer span{color:var(--accent)}
       <div class="quick-card"><span class="qc-val">60h</span><span class="qc-lab">Internship</span></div>
       <div class="quick-card"><span class="qc-val">3</span><span class="qc-lab">Certifications</span></div>
     </div>
+    <!-- GET IN TOUCH -->
+    <div class="git-section">
+      <h2 class="git-heading">Get In <span>Touch</span></h2>
+      <div class="git-layout">
+        <!-- Left: info -->
+        <div class="git-info">
+          <a class="git-info-item" href="mailto:saiganeshveera965@gmail.com">
+            <div class="git-info-icon git-icon-email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+            </div>
+            <div>
+              <div class="git-info-label">Email</div>
+              <div class="git-info-val">saiganeshveera965@gmail.com</div>
+            </div>
+          </a>
+          <a class="git-info-item" href="https://github.com/24A31A05IR" target="_blank" rel="noopener">
+            <div class="git-info-icon git-icon-github">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </div>
+            <div>
+              <div class="git-info-label">GitHub</div>
+              <div class="git-info-val">24A31A05IR</div>
+            </div>
+          </a>
+          <a class="git-info-item" href="https://www.linkedin.com/in/veera-sai-ganesh" target="_blank" rel="noopener">
+            <div class="git-info-icon git-icon-linkedin">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <div>
+              <div class="git-info-label">LinkedIn</div>
+              <div class="git-info-val">veera-sai-ganesh</div>
+            </div>
+          </a>
+          <a class="git-info-item" href="https://maps.app.goo.gl/mWRV6Q4F5Tap7LD87" target="_blank" rel="noopener">
+            <div class="git-info-icon git-icon-location">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="git-info-label">Location</div>
+              <div class="git-info-val">Mandapeta, Andhra Pradesh</div>
+            </div>
+          </a>
+        </div>
+        <!-- Right: message form (mailto-powered) -->
+        <div class="git-form">
+          <div class="git-form-row">
+            <input class="git-input" type="text" id="fName" placeholder="Your Name"/>
+            <input class="git-input" type="email" id="fEmail" placeholder="Your Email"/>
+          </div>
+          <input class="git-input" type="text" id="fSubject" placeholder="Subject" style="margin-bottom:12px"/>
+          <textarea class="git-input git-textarea" id="fMsg" placeholder="Your Message"></textarea>
+          <button class="git-send" onclick="sendMsg()">
+            <i class="ti ti-send"></i> Send Message
+          </button>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- SKILLS -->
@@ -444,19 +765,76 @@ footer span{color:var(--accent)}
   <!-- INTERNSHIP -->
   <section class="section" id="sec-internship">
     <div class="section-header"><span class="section-label">03 — Internship</span><div class="section-line"></div></div>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
+
+    <!-- main card -->
+    <div class="intern-card">
+      <div class="intern-header">
+        <div class="intern-logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="15" stroke="#818CF8" stroke-width="1.2"/>
+            <path d="M8 20 C10 12, 14 10, 16 16 C18 22, 22 20, 24 14" stroke="#6EE7B7" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <circle cx="16" cy="16" r="2.5" fill="#818CF8"/>
+          </svg>
+        </div>
         <div>
-          <div class="tl-period">Feb 2026 — Mar 2026</div>
-          <div class="tl-title">1M1B Green Internship</div>
-          <div class="tl-sub">1M1B Green Skills Academy · In partnership with AICTE, supported by Salesforce</div>
-          <div class="tl-body">Completed 30 learning hours focused on Developing a Sustainable Mindset and delivered 30 hours of Live Project Work on green skills and sustainability initiatives.</div>
-          <a class="badge blue" href="https://drive.google.com/file/d/120b6eMaZ4UuUA6KcXZisgZTzJE-XWDLQ/view?usp=drivesdk" target="_blank" rel="noopener" style="margin-top:10px">
-            <i class="ti ti-certificate" style="font-size:11px"></i>View Completion Certificate
-          </a>
+          <div class="intern-org">1M1B Green Skills Academy</div>
+          <div class="intern-partners">In partnership with AICTE · Supported by Salesforce</div>
+        </div>
+        <span class="intern-badge">Completed</span>
+      </div>
+
+      <div class="intern-title-row">
+        <h3 class="intern-title">Green Skills Internship</h3>
+        <span class="intern-period"><i class="ti ti-calendar" style="font-size:12px"></i> Feb 2026 — Mar 2026</span>
+      </div>
+
+      <p class="intern-desc">
+        A structured virtual internship program focused on building green skills and sustainability literacy. Completed through 1 Million 1 Billion (1M1B) Foundation — a global initiative committed to empowering young professionals with future-ready competencies aligned with UN Sustainable Development Goals.
+      </p>
+
+      <div class="intern-highlights">
+        <div class="intern-highlight">
+          <div class="ih-icon" style="background:var(--accentDim);color:var(--accent)"><i class="ti ti-book"></i></div>
+          <div>
+            <div class="ih-title">30 Learning Hours</div>
+            <div class="ih-desc">Modules on Developing a Sustainable Mindset, climate action frameworks, and responsible resource management aligned with SDG principles.</div>
+          </div>
+        </div>
+        <div class="intern-highlight">
+          <div class="ih-icon" style="background:var(--blueDim);color:var(--blue)"><i class="ti ti-briefcase"></i></div>
+          <div>
+            <div class="ih-title">30 Hours Live Project Work</div>
+            <div class="ih-desc">Hands-on project contribution covering green skill application, sustainability reporting, and real-world initiative planning with peer collaboration.</div>
+          </div>
+        </div>
+        <div class="intern-highlight">
+          <div class="ih-icon" style="background:var(--purpleDim);color:var(--purple)"><i class="ti ti-world"></i></div>
+          <div>
+            <div class="ih-title">UN SDG Alignment</div>
+            <div class="ih-desc">Program content was aligned with the United Nations Sustainable Development Goals — specifically SDG 4 (Quality Education), SDG 8 (Decent Work), and SDG 13 (Climate Action).</div>
+          </div>
+        </div>
+        <div class="intern-highlight">
+          <div class="ih-icon" style="background:var(--orangeDim);color:var(--orange)"><i class="ti ti-award"></i></div>
+          <div>
+            <div class="ih-title">AICTE Recognized</div>
+            <div class="ih-desc">Internship recognized by the All India Council for Technical Education (AICTE) and supported by Salesforce — adding institutional credibility to the certification.</div>
+          </div>
         </div>
       </div>
+
+      <div class="intern-skills">
+        <span class="intern-skill-tag">Sustainability</span>
+        <span class="intern-skill-tag">Green Mindset</span>
+        <span class="intern-skill-tag">Climate Action</span>
+        <span class="intern-skill-tag">UN SDGs</span>
+        <span class="intern-skill-tag">Live Project Work</span>
+        <span class="intern-skill-tag">AICTE Certified</span>
+      </div>
+
+      <a class="intern-cert-btn" href="https://drive.google.com/file/d/120b6eMaZ4UuUA6KcXZisgZTzJE-XWDLQ/view?usp=drivesdk" target="_blank" rel="noopener">
+        <i class="ti ti-certificate"></i> View Completion Certificate
+      </a>
     </div>
   </section>
 
@@ -570,14 +948,30 @@ footer span{color:var(--accent)}
     <div class="section-header"><span class="section-label">06 — Achievements</span><div class="section-line"></div></div>
     <div class="ach-list">
       <div class="ach-item">
-        <div class="ach-icon-wrap icon-emerald"><i class="ti ti-trophy"></i></div>
+        <!-- LeetCode logo -->
+        <div class="ach-icon-wrap" style="background:#1c1710">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#f0a500"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+        </div>
         <div class="ach-text">
           Solved 250+ Data Structures & Algorithms problems on LeetCode and HackerRank
           <small>Consistent practice across arrays, trees, graphs, dynamic programming, and sorting</small>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a href="https://leetcode.com/u/saiganeshveera965" target="_blank" rel="noopener" class="ach-link" style="background:#1c1710;color:#f0a500;border-color:rgba(240,165,0,0.25)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+              LeetCode
+            </a>
+            <a href="https://www.hackerrank.com/profile/saiganeshveera965" target="_blank" rel="noopener" class="ach-link" style="background:#0d1f14;color:#2ec866;border-color:rgba(46,200,102,0.25)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1.285 0 9.75 4.886 10.392 6 .645 1.115.645 11.885 0 13S13.287 24 12 24C10.714 24 2.25 19.114 1.608 18 .963 16.885.963 6.115 1.608 5 2.25 3.886 10.715 0 12 0zm2.295 6.799c-.141 0-.258.115-.258.258v3.875H9.963V6.908a.263.263 0 0 0-.262-.262H7.492a.264.264 0 0 0-.262.262V17.1c0 .145.117.262.262.262H9.7a.262.262 0 0 0 .262-.262v-3.946h4.074V17.1c0 .145.117.262.262.262h2.208a.264.264 0 0 0 .262-.262V6.908a.262.262 0 0 0-.262-.262h-.211z"/></svg>
+              HackerRank
+            </a>
+          </div>
         </div>
       </div>
       <div class="ach-item">
-        <div class="ach-icon-wrap icon-blue"><i class="ti ti-rocket"></i></div>
+        <!-- Hackathon trophy icon -->
+        <div class="ach-icon-wrap icon-blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M17 7V5H7v2"/><path d="M7 5C7 5 4 5 4 8c0 2.5 2 4 4 4.5M17 5c0 0 3 0 3 3 0 2.5-2 4-4 4.5"/><rect x="7" y="5" width="10" height="9" rx="1"/></svg>
+        </div>
         <div class="ach-text">
           Participated in multiple college hackathons and technical coding contests
           <small>Practiced system design and optimization under time-constrained conditions</small>
@@ -588,15 +982,24 @@ footer span{color:var(--accent)}
     <div class="section-header" style="margin-top:2.5rem"><span class="section-label">Certifications</span><div class="section-line"></div></div>
     <div class="cert-grid">
       <div class="cert-card">
-        <i class="ti ti-cloud cert-icon" style="color:var(--orange)"></i>
+        <!-- AWS logo -->
+        <div class="cert-logo-wrap" style="background:#1a0f00">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#FF9900"><path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 0 1-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 0 1-.287-.375 6.18 6.18 0 0 1-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.391-.384-.59-.894-.59-1.533 0-.678.239-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.030-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103-.295.072-.583.16-.862.272a2.287 2.287 0 0 1-.28.104.488.488 0 0 1-.127.023c-.112 0-.168-.08-.168-.247v-.391c0-.128.016-.224.056-.28a.597.597 0 0 1 .224-.167c.279-.144.614-.264 1.005-.36a4.84 4.84 0 0 1 1.246-.151c.95 0 1.644.216 2.091.647.439.43.662 1.085.662 1.963v2.586zm-3.24 1.214c.263 0 .534-.048.822-.144.287-.096.543-.271.758-.51.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 0 0-.735-.136 6.02 6.02 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.199.343zm6.41.862c-.144 0-.24-.024-.304-.08-.063-.048-.12-.16-.168-.311L7.586 5.55a1.398 1.398 0 0 1-.072-.32c0-.128.064-.2.191-.2h.783c.151 0 .255.025.31.08.065.048.113.16.16.312l1.342 5.284 1.245-5.284c.04-.16.088-.264.151-.312a.549.549 0 0 1 .32-.08h.638c.152 0 .256.025.32.08.063.048.12.16.151.312l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.312a.52.52 0 0 1 .311-.08h.743c.127 0 .2.065.2.2 0 .04-.009.08-.017.128a1.137 1.137 0 0 1-.056.2l-1.923 6.17c-.048.16-.104.263-.168.311a.51.51 0 0 1-.303.08h-.687c-.151 0-.255-.024-.32-.08-.063-.056-.119-.16-.15-.32l-1.238-5.148-1.23 5.14c-.04.16-.087.264-.15.32-.065.056-.177.08-.32.08zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.215-.151-.247-.223a.563.563 0 0 1-.048-.224v-.407c0-.167.063-.247.183-.247.048 0 .096.008.144.024.048.016.12.048.2.08.271.12.566.215.878.279.319.064.63.096.95.096.502 0 .894-.088 1.165-.264a.86.86 0 0 0 .415-.758.778.778 0 0 0-.215-.559c-.144-.151-.415-.287-.807-.415l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.902 1.902 0 0 1-.39-1.165c0-.335.071-.63.215-.886.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .359.008.535.032.183.024.35.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 0 1 .24.2.43.43 0 0 1 .071.263v.375c0 .168-.064.256-.184.256a.83.83 0 0 1-.303-.096 3.652 3.652 0 0 0-1.532-.311c-.455 0-.815.071-1.062.223-.248.152-.375.383-.375.695 0 .215.08.4.24.55.158.152.454.304.877.44l1.134.358c.574.184.99.44 1.237.768.247.327.367.702.367 1.117 0 .343-.072.655-.207.926-.144.271-.336.511-.583.703-.248.2-.543.343-.886.447-.36.111-.743.167-1.15.167z"/><path d="M21.528 18.396c-2.65 1.958-6.497 2.999-9.809 2.999-4.641 0-8.82-1.718-11.982-4.574-.248-.224-.024-.527.272-.352 3.41 1.982 7.621 3.175 11.97 3.175 2.934 0 6.16-.607 9.129-1.871.448-.191.822.295.42.623z"/><path d="M22.643 17.113c-.336-.432-2.22-.207-3.074-.103-.255.032-.295-.192-.064-.36 1.506-1.058 3.976-.75 4.263-.399.287.36-.08 2.826-1.49 4.004-.215.184-.422.088-.327-.151.319-.79 1.03-2.562.692-2.991z"/></svg>
+        </div>
         <div><div class="cert-name">AI-ML Virtual Internship</div><div class="cert-issuer">AWS Academy</div></div>
       </div>
       <div class="cert-card">
-        <i class="ti ti-device-mobile cert-icon" style="color:var(--blue)"></i>
+        <!-- Google logo -->
+        <div class="cert-logo-wrap" style="background:#0f1923">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        </div>
         <div><div class="cert-name">Android Developer Virtual Internship</div><div class="cert-issuer">Google for Developers</div></div>
       </div>
       <div class="cert-card">
-        <i class="ti ti-brain cert-icon" style="color:var(--purple)"></i>
+        <!-- Microsoft logo -->
+        <div class="cert-logo-wrap" style="background:#0f1520">
+          <svg width="28" height="28" viewBox="0 0 24 24"><rect x="1" y="1" width="10.5" height="10.5" fill="#F25022"/><rect x="12.5" y="1" width="10.5" height="10.5" fill="#7FBA00"/><rect x="1" y="12.5" width="10.5" height="10.5" fill="#00A4EF"/><rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900"/></svg>
+        </div>
         <div><div class="cert-name">Fundamental AI Concepts</div><div class="cert-issuer">Microsoft Learn</div></div>
       </div>
     </div>
@@ -629,18 +1032,76 @@ function enterPortfolio(){
     document.getElementById('hero').classList.add('visible');
   }, 300);
 }
+// Auto-dismiss after 3s
+setTimeout(enterPortfolio, 3000);
 
 /* ── Section switching ── */
-function showSection(name, el){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.getElementById('sec-'+name).classList.add('active');
-  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('navLinks').classList.remove('open');
-  window.scrollTo({top:0,behavior:'smooth'});
+function showSection(name, linkEl){
+  // animate out current section
+  const current = document.querySelector('.section.active');
+  if(current){
+    current.classList.add('exiting');
+    setTimeout(()=>{ current.classList.remove('active','exiting'); }, 220);
+  }
+
+  setTimeout(()=>{
+    // show new section
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active','exiting'));
+    const next = document.getElementById('sec-'+name);
+    if(next){ next.classList.add('entering'); next.classList.add('active');
+      requestAnimationFrame(()=>{ next.classList.remove('entering'); }); }
+    // nav active state
+    document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+    linkEl.classList.add('active');
+    document.getElementById('navLinks').classList.remove('open');
+    // show hero only on about
+    const hero = document.getElementById('hero');
+    if(hero) hero.style.display = (name === 'about') ? 'block' : 'none';
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, current ? 200 : 0);
   return false;
 }
 function toggleMenu(){ document.getElementById('navLinks').classList.toggle('open') }
+function toggleTheme(){
+  const isLight = document.body.classList.toggle('light');
+  document.getElementById('iconSun').style.display  = isLight ? 'none'  : 'block';
+  document.getElementById('iconMoon').style.display = isLight ? 'block' : 'none';
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+// Restore saved theme on load
+(function(){
+  if(localStorage.getItem('theme') === 'light'){
+    document.body.classList.add('light');
+    const s = document.getElementById('iconSun');
+    const m = document.getElementById('iconMoon');
+    if(s) s.style.display = 'none';
+    if(m) m.style.display = 'block';
+  }
+})();
+function connectMe(){
+  // Make sure About section is active (Get In Touch lives there)
+  const isAboutActive = document.getElementById('sec-about').classList.contains('active');
+  if(!isAboutActive){
+    const aboutLink = document.querySelector('.nav-links a');
+    showSection('about', aboutLink);
+  }
+  // Scroll to Get In Touch
+  setTimeout(()=>{
+    const git = document.querySelector('.git-section');
+    if(git) git.scrollIntoView({behavior:'smooth', block:'start'});
+  }, isAboutActive ? 0 : 420);
+}
+function sendMsg(){
+  const name    = document.getElementById('fName').value.trim();
+  const email   = document.getElementById('fEmail').value.trim();
+  const subject = document.getElementById('fSubject').value.trim();
+  const msg     = document.getElementById('fMsg').value.trim();
+  if(!name||!msg){ alert('Please fill in your name and message.'); return; }
+  const body = encodeURIComponent('From: '+name+' <'+email+'>\n\n'+msg);
+  const sub  = encodeURIComponent(subject||'Portfolio Contact');
+  window.location.href = 'mailto:saiganeshveera965@gmail.com?subject='+sub+'&body='+body;
+}
 </script>
 </body>
 </html>
