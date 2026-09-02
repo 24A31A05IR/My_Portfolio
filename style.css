@@ -22,6 +22,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text1);min-height:
   background:var(--bg);
   overflow:hidden;
 }
+/* animated grid background */
 #splash::before{
   content:'';position:absolute;inset:0;
   background-image:
@@ -32,6 +33,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text1);min-height:
 }
 @keyframes gridMove{from{background-position:0 0}to{background-position:60px 60px}}
 
+/* radial glow center */
 #splash::after{
   content:'';position:absolute;
   width:600px;height:600px;border-radius:50%;
@@ -48,6 +50,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text1);min-height:
 }
 @keyframes splashIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
+/* floating accent lines */
 .splash-line{
   position:absolute;height:1px;
   background:linear-gradient(90deg,transparent,var(--accent),transparent);
@@ -58,6 +61,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text1);min-height:
 .splash-line-3{width:80px;top:60%;left:15%;animation:lineFloat 4s ease-in-out 2s infinite}
 @keyframes lineFloat{0%,100%{opacity:0.2;transform:translateY(0) rotate(-15deg)}50%{opacity:0.5;transform:translateY(-8px) rotate(-15deg)}}
 
+/* corner brackets */
 .splash-bracket{
   position:absolute;width:40px;height:40px;
   border-color:rgba(110,231,183,0.25);border-style:solid;
@@ -98,6 +102,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text1);min-height:
   animation:splashIn 0.8s 0.4s both;
 }
 
+/* typing cursor effect on role */
 .splash-role::after{
   content:'|';color:var(--accent);
   animation:cursorBlink 1s step-end infinite;
@@ -127,6 +132,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text1);min-height:
 .splash-enter svg{transition:transform 0.3s}
 .splash-enter:hover svg{transform:translateX(4px)}
 
+/* splash exit */
 #splash.exit{animation:splashOut 0.6s ease forwards}
 @keyframes splashOut{to{opacity:0;transform:scale(0.98);pointer-events:none}}
 
@@ -252,7 +258,7 @@ main{max-width:960px;margin:0 auto;padding:0 2rem}
 .stag:hover{border-color:var(--accent);color:var(--accent)}
 .skill-wide{grid-column:1/-1}
 
-/* ── TIMELINE ── */
+/* ── INTERNSHIP ── */
 .timeline{position:relative}
 .timeline::before{content:'';position:absolute;left:15px;top:18px;bottom:18px;width:1px;background:var(--border)}
 .tl-item{display:grid;grid-template-columns:32px 1fr;gap:18px;padding-bottom:2.25rem}
@@ -277,6 +283,7 @@ main{max-width:960px;margin:0 auto;padding:0 2rem}
 .feat-badge{position:absolute;top:1rem;right:1rem;font-size:9px;font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:99px;background:var(--accentDim);color:var(--accent);border:1px solid rgba(110,231,183,0.2)}
 .project-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem}
 
+/* SVG logo container */
 .project-logo{width:48px;height:48px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
 .project-logo-qt{background:linear-gradient(135deg,#0D2818,#052E1E)}
 .project-logo-pg{background:linear-gradient(135deg,#1E1B4B,#0D0B2E)}
@@ -301,6 +308,9 @@ main{max-width:960px;margin:0 auto;padding:0 2rem}
 .project-link:hover{border-color:var(--accent);color:var(--accent);background:var(--accentDim)}
 .project-link i{font-size:13px}
 .project-card.featured{grid-column:1/-1}
+
+/* ── EDUCATION ── */
+/* (reuses timeline styles) */
 
 /* ── ACHIEVEMENTS + CERTS ── */
 .ach-list{display:flex;flex-direction:column;gap:10px}
@@ -386,6 +396,43 @@ footer span{color:var(--accent)}
   color: #fca5a5;
 }
 
+/* ── CONTACT IN ABOUT ── */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.contact-card{
+  display:flex;align-items:center;gap:14px;
+  padding:1rem 1.25rem;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:var(--r-lg);text-decoration:none;
+  transition:all 0.25s;
+}
+.contact-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.contact-card-icon{
+  width:40px;height:40px;border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.contact-card-label{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);font-family:var(--mono);margin-bottom:2px}
+.contact-card-val{font-size:12px;color:var(--text1);font-family:var(--mono);font-weight:400}
+
+/* section exit/enter transitions */
+.section.exiting{
+  animation:sectionOut 0.22s ease forwards;
+  pointer-events:none;
+}
+@keyframes sectionOut{
+  from{opacity:1;transform:translateY(0)}
+  to{opacity:0;transform:translateY(-10px)}
+}
+.section.entering{
+  animation:sectionIn 0.38s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes sectionIn{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+/* hero compact mode for non-about */
+.hero{transition:padding 0.3s ease}
+
 /* ── GET IN TOUCH ── */
 .git-section{margin-top:3rem;padding-top:2.5rem;border-top:1px solid var(--border)}
 .git-heading{
@@ -459,6 +506,36 @@ footer span{color:var(--accent)}
   flex-shrink:0;
   overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);
 }
+.aws-logo-wrap{
+  background:linear-gradient(135deg, rgba(255,153,0,0.12), rgba(255,153,0,0.04));
+  border:1px solid rgba(255,153,0,0.28);
+  box-shadow:0 10px 20px rgba(255,153,0,0.08);
+}
+.aws-logo-svg{
+  width:46px;height:46px;display:block;
+  overflow:visible;
+}
+.aws-logo-svg .aws-wordmark{
+  fill:var(--aws-wordmark);
+}
+.aws-logo-svg .aws-swoosh{
+  stroke:var(--aws-swoosh);
+}
+body{
+  --aws-wordmark:#1f2d3d;
+  --aws-swoosh:#FF9F1C;
+}
+body.light{
+  --aws-wordmark:#1e2b3b;
+  --aws-swoosh:#FF9F1C;
+}
+
+.git-icon-email{background:var(--accentDim);color:var(--accent)}
+.git-icon-github{background:#161b22;color:#e6edf3}
+.git-icon-linkedin{background:#0a1628;color:#0A66C2}
+.git-icon-location{background:rgba(129,140,248,0.1);color:var(--blue)}
+.git-info-static{cursor:default}
+.git-info-static:hover{transform:none !important}
 
 /* ── INTERNSHIP CARD ── */
 .intern-card{
@@ -535,6 +612,12 @@ footer span{color:var(--accent)}
 .intern-cert-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(129,140,248,0.3)}
 .intern-cert-btn i{font-size:15px}
 
+
+
+
+
+
+
 /* ── LIGHT THEME ── */
 body.light{
   --bg:#F8F8F6;
@@ -589,16 +672,3 @@ body.light .git-input{color:var(--text1)}
 }
 .connect-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(110,231,183,0.3)}
 .connect-btn svg{flex-shrink:0}
-
-/* section exit/enter transitions */
-.section.exiting{
-  animation:sectionOut 0.22s ease forwards;
-  pointer-events:none;
-}
-@keyframes sectionOut{
-  from{opacity:1;transform:translateY(0)}
-  to{opacity:0;transform:translateY(-10px)}
-}
-.section.entering{
-  animation:sectionIn 0.38s cubic-bezier(0.22,1,0.36,1) forwards;
-}
