@@ -346,6 +346,67 @@ main{max-width:960px;margin:0 auto;padding:0 2rem}
 footer{border-top:1px solid var(--border);text-align:center;padding:2rem;font-size:11px;font-family:var(--mono);color:var(--text3);letter-spacing:0.06em;margin-top:2rem}
 footer span{color:var(--accent)}
 
+/* ── FORM FEEDBACK TOAST ── */
+.form-toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1000;
+  min-width: min(360px, calc(100vw - 32px));
+  max-width: 420px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border2);
+  background: rgba(17, 17, 19, 0.92);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+  color: var(--text1);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+  transform: translateY(18px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.28s ease;
+}
+.form-toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.form-toast.success {
+  border-color: rgba(110, 231, 183, 0.35);
+  box-shadow: 0 18px 35px rgba(52, 211, 153, 0.18);
+}
+.form-toast.error {
+  border-color: rgba(248, 113, 113, 0.35);
+  box-shadow: 0 18px 35px rgba(239, 68, 68, 0.16);
+}
+.form-toast-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.form-toast-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+.form-toast.success .form-toast-icon {
+  background: rgba(110, 231, 183, 0.15);
+  color: var(--accent);
+}
+.form-toast.error .form-toast-icon {
+  background: rgba(248, 113, 113, 0.12);
+  color: #fca5a5;
+}
+
 /* ── CONTACT IN ABOUT ── */
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
 .contact-card{
@@ -450,10 +511,34 @@ footer span{color:var(--accent)}
 
 /* ── CERT LOGO ── */
 .cert-logo-wrap{
-  width:44px;height:44px;min-width:44px;
+  width:48px;height:48px;min-width:48px;
   border-radius:var(--r-sm);
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
+  overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+.aws-logo-wrap{
+  background:linear-gradient(135deg, rgba(255,153,0,0.12), rgba(255,153,0,0.04));
+  border:1px solid rgba(255,153,0,0.28);
+  box-shadow:0 10px 20px rgba(255,153,0,0.08);
+}
+.aws-logo-svg{
+  width:46px;height:46px;display:block;
+  overflow:visible;
+}
+.aws-logo-svg .aws-wordmark{
+  fill:var(--aws-wordmark);
+}
+.aws-logo-svg .aws-swoosh{
+  stroke:var(--aws-swoosh);
+}
+body{
+  --aws-wordmark:#1f2d3d;
+  --aws-swoosh:#FF9F1C;
+}
+body.light{
+  --aws-wordmark:#1e2b3b;
+  --aws-swoosh:#FF9F1C;
 }
 
 .git-icon-email{background:var(--accentDim);color:var(--accent)}
@@ -667,7 +752,7 @@ body.light .git-input{color:var(--text1)}
     </div>
     <h1>Veera<br><span>Sai Ganesh</span></h1>
     <div class="hero-sub">CS Engineer · Problem Solver</div>
-    <p class="hero-bio">First-year CSE student with a 9.08 CGPA, a strong grip on data structures, and a habit of shipping real projects. I write clean code, think in systems, and build things that work.</p>
+    <p class="hero-bio">First-year CSE student with a 9.1 CGPA, a strong grip on data structures, and a habit of shipping real projects. I write clean code, think in systems, and build things that work.</p>
     <button class="connect-btn" onclick="connectMe()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
       Connect with me
@@ -681,12 +766,12 @@ body.light .git-input{color:var(--text1)}
   <!-- ABOUT -->
   <section class="section active" id="sec-about">
     <div class="section-header"><span class="section-label">01 — About</span><div class="section-line"></div></div>
-    <p class="about-intro">I'm a <strong>Computer Science Engineering student</strong> at Pragati Engineering College, currently in my first year with a CGPA of 9.08. My focus is on building software that is useful, well-structured, and maintainable. I actively practice DSA to sharpen my problem-solving instincts, and I apply that thinking when architecting real projects. I hold certifications from AWS, Google, and Microsoft and recently completed a green skills internship in partnership with AICTE and Salesforce.</p>
+    <p class="about-intro">I'm a <strong>Computer Science Engineering student</strong> at Pragati Engineering College, currently in my first year with a CGPA of 9.1. My focus is on building software that is useful, well-structured, and maintainable. I actively practice DSA to sharpen my problem-solving instincts, and I apply that thinking when architecting real projects. I hold certifications from AWS, Google, and Microsoft and recently completed a green skills internship in partnership with AICTE and Salesforce.</p>
     <div class="section-header"><span class="section-label">At a glance</span><div class="section-line"></div></div>
     <div class="quick-grid">
-      <div class="quick-card"><span class="qc-val">9.08</span><span class="qc-lab">B.Tech CGPA</span></div>
+      <div class="quick-card"><span class="qc-val">9.1</span><span class="qc-lab">B.Tech CGPA</span></div>
       <div class="quick-card"><span class="qc-val">96.6%</span><span class="qc-lab">Class 12</span></div>
-      <a class="quick-card" href="https://leetcode.com/24A31A05IR" target="_blank" rel="noopener" style="text-decoration:none;cursor:pointer" title="View LeetCode Profile"><span class="qc-val">250+</span><span class="qc-lab">DSA problems ↗</span></a>
+      <a class="quick-card" href="https://leetcode.com/24A31A05IR" target="_blank" rel="noopener" style="text-decoration:none;cursor:pointer" title="View LeetCode Profile"><span class="qc-val">300+</span><span class="qc-lab">DSA problems ↗</span></a>
       <div class="quick-card"><span class="qc-val">2</span><span class="qc-lab">Live projects</span></div>
       <div class="quick-card"><span class="qc-val">60h</span><span class="qc-lab">Internship</span></div>
       <div class="quick-card"><span class="qc-val">3</span><span class="qc-lab">Certifications</span></div>
@@ -734,18 +819,18 @@ body.light .git-input{color:var(--text1)}
             </div>
           </a>
         </div>
-        <!-- Right: message form (mailto-powered) -->
-        <div class="git-form">
+        <!-- Right: message form (Formspree-powered) -->
+        <form class="git-form" id="contactForm" action="https://formspree.io/f/xeaqqygr" method="POST">
           <div class="git-form-row">
-            <input class="git-input" type="text" id="fName" placeholder="Your Name"/>
-            <input class="git-input" type="email" id="fEmail" placeholder="Your Email"/>
+            <input class="git-input" type="text" id="fName" name="name" placeholder="Your Name" required/>
+            <input class="git-input" type="email" id="fEmail" name="email" placeholder="Your Email" required/>
           </div>
-          <input class="git-input" type="text" id="fSubject" placeholder="Subject" style="margin-bottom:12px"/>
-          <textarea class="git-input git-textarea" id="fMsg" placeholder="Your Message"></textarea>
-          <button class="git-send" onclick="sendMsg()">
+          <input class="git-input" type="text" id="fSubject" name="subject" placeholder="Subject" style="margin-bottom:12px"/>
+          <textarea class="git-input git-textarea" id="fMsg" name="message" placeholder="Your Message" required></textarea>
+          <button class="git-send" type="submit">
             <i class="ti ti-send"></i> Send Message
           </button>
-        </div>
+        </form>
       </div>
     </div>
   </section>
@@ -928,7 +1013,7 @@ body.light .git-input{color:var(--text1)}
           <div class="tl-period">2024 — 2028</div>
           <div class="tl-title">B.Tech in Computer Science Engineering</div>
           <div class="tl-sub">Pragati Engineering College (Autonomous) · Mandapeta, A.P</div>
-          <span class="badge"><i class="ti ti-star" style="font-size:10px"></i>CGPA 9.08 / 10.00</span>
+          <span class="badge"><i class="ti ti-star" style="font-size:10px"></i>CGPA 9.1 / 10.00</span>
         </div>
       </div>
       <div class="tl-item">
@@ -1009,6 +1094,14 @@ body.light .git-input{color:var(--text1)}
 
 <footer>Designed & built by <span>Veera Sai Ganesh</span> &nbsp;·&nbsp; 2026</footer>
 
+<div id="formToast" class="form-toast" role="status" aria-live="polite">
+  <div class="form-toast-head">
+    <span class="form-toast-icon">✓</span>
+    <span id="toastTitle">Success</span>
+  </div>
+  <div id="toastMessage">Your message has been sent successfully. I will get back to you.</div>
+</div>
+
 <script>
 /* ── Typewriter on splash ── */
 const roles = ['CS Engineering Student', 'Problem Solver', 'Open to Opportunities'];
@@ -1079,6 +1172,7 @@ function toggleTheme(){
     if(m) m.style.display = 'block';
   }
 })();
+
 function connectMe(){
   // Make sure About section is active (Get In Touch lives there)
   const isAboutActive = document.getElementById('sec-about').classList.contains('active');
@@ -1092,16 +1186,71 @@ function connectMe(){
     if(git) git.scrollIntoView({behavior:'smooth', block:'start'});
   }, isAboutActive ? 0 : 420);
 }
-function sendMsg(){
-  const name    = document.getElementById('fName').value.trim();
-  const email   = document.getElementById('fEmail').value.trim();
-  const subject = document.getElementById('fSubject').value.trim();
-  const msg     = document.getElementById('fMsg').value.trim();
-  if(!name||!msg){ alert('Please fill in your name and message.'); return; }
-  const body = encodeURIComponent('From: '+name+' <'+email+'>\n\n'+msg);
-  const sub  = encodeURIComponent(subject||'Portfolio Contact');
-  window.location.href = 'mailto:saiganeshveera965@gmail.com?subject='+sub+'&body='+body;
+const contactForm = document.getElementById('contactForm');
+const formToast = document.getElementById('formToast');
+const toastTitle = document.getElementById('toastTitle');
+const toastMessage = document.getElementById('toastMessage');
+
+function showToast(type, title, message) {
+  if (!formToast || !toastTitle || !toastMessage) return;
+
+  formToast.classList.remove('success', 'error', 'visible');
+  formToast.classList.add(type);
+  toastTitle.textContent = title;
+  toastMessage.textContent = message;
+
+  const icon = formToast.querySelector('.form-toast-icon');
+  if (icon) {
+    icon.textContent = type === 'success' ? '✓' : '!';
+  }
+
+  requestAnimationFrame(() => {
+    formToast.classList.add('visible');
+  });
+
+  clearTimeout(showToast.timeoutId);
+  showToast.timeoutId = setTimeout(() => {
+    formToast.classList.remove('visible');
+  }, 3200);
 }
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitButton.innerHTML;
+
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="ti ti-loader-2" style="animation:spin 1s linear infinite;"></i> Sending...';
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
+
+      contactForm.reset();
+      showToast('success', 'Success', 'Your message has been sent successfully. I will get back to you.');
+    } catch (error) {
+      showToast('error', 'Oops', 'Something went wrong while sending the message. Please try again later or email me directly.');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalText;
+    }
+  });
+}
+
+const spinStyle = document.createElement('style');
+spinStyle.textContent = '@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
+document.head.appendChild(spinStyle);
 </script>
 </body>
 </html>
