@@ -12,6 +12,7 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text1);min-height:100vh;overflow-x:hidden;overflow-y:auto}
+.scroll-progress{position:fixed;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--blue),var(--purple));z-index:1001;transition:width 0.12s ease;pointer-events:none}
 
 /* ════════════════════════════════
    WELCOME SPLASH
@@ -280,6 +281,7 @@ main{max-width:960px;margin:0 auto;padding:0 2rem}
 }
 .project-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
 .project-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 20px 56px rgba(0,0,0,0.5)}
+.project-card.tilt-active{transition:transform 0.12s ease-out,box-shadow 0.12s ease-out}
 .feat-badge{position:absolute;top:1rem;right:1rem;font-size:9px;font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:99px;background:var(--accentDim);color:var(--accent);border:1px solid rgba(110,231,183,0.2)}
 .project-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem}
 
@@ -672,3 +674,8 @@ body.light .git-input{color:var(--text1)}
 }
 .connect-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(110,231,183,0.3)}
 .connect-btn svg{flex-shrink:0}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}
+}

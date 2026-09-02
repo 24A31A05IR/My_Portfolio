@@ -143,6 +143,48 @@ if (contactForm) {
   });
 }
 
+// ── Reading progress and pointer feedback
+const scrollProgress = document.getElementById('scrollProgress');
+const projectCards = document.querySelectorAll('.project-card');
+
+function updateScrollProgress() {
+  if (!scrollProgress) return;
+  const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+  scrollProgress.style.width = `${Math.min(progress, 100)}%`;
+}
+
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+window.addEventListener('resize', updateScrollProgress);
+updateScrollProgress();
+
+projectCards.forEach((card) => {
+  card.addEventListener('pointermove', (event) => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || event.pointerType === 'touch') return;
+    const bounds = card.getBoundingClientRect();
+    const rotateX = ((event.clientY - bounds.top) / bounds.height - 0.5) * -4;
+    const rotateY = ((event.clientX - bounds.left) / bounds.width - 0.5) * 4;
+    card.classList.add('tilt-active');
+    card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+  });
+
+  card.addEventListener('pointerleave', () => {
+    card.classList.remove('tilt-active');
+    card.style.transform = '';
+  });
+});
+
+document.querySelectorAll('.nav-links a').forEach((link, index, links) => {
+  link.addEventListener('keydown', (event) => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const direction = event.key === 'ArrowLeft' ? -1 : event.key === 'ArrowRight' ? 1 : 0;
+    const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? links.length - 1 : (index + direction + links.length) % links.length;
+    links[nextIndex].focus();
+    links[nextIndex].click();
+  });
+});
+
 const spinStyle = document.createElement('style');
 spinStyle.textContent = '@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
 document.head.appendChild(spinStyle);
